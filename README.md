@@ -115,6 +115,7 @@ also note the `Node* root` defined in the Trie class, its the only member variab
   ```cpp
   Trie(const Trie& trie);
   ```
+  to implement this function you may need all the strings stored in Trie. Feel free to create a function for it.
 
 
 - **move constructor**
