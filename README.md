@@ -1,5 +1,5 @@
 # Advanced Programming Course - HW1
-<p  align="center"> <b>Homework 2 - Fall 2022 Semester <br> Deadline: Jome 20 Aban - 11:59 pm</b> </p>
+<p  align="center"> <b>Homework 2 - Fall 2022 Semester <br> Deadline: Shanbe 21 Aban - 11:59 pm</b> </p>
 
 </br>
 
@@ -82,7 +82,6 @@ also note the `Node* root` defined in the Trie class, its the only member variab
   ```
   As shown in the figure every Trie has a first node called root this is the very first node of the Trie and has no character inside it (no character means `'\0'`)
 
-<br/>
 
 - **insert function**
 
@@ -92,7 +91,6 @@ also note the `Node* root` defined in the Trie class, its the only member variab
   ```
   you have to insert the characters of *str* one by one to the tree by following the Trie rules. (if needed, you can search more about inserting words into a Trie) 
 
-<br/>
 
 - **search function**
 
@@ -102,7 +100,6 @@ also note the `Node* root` defined in the Trie class, its the only member variab
   ```
   Again, if you need you can search more about searching words in a Trie.
 
-<br/>
 
 - **bfs**
 
@@ -111,7 +108,6 @@ also note the `Node* root` defined in the Trie class, its the only member variab
   void bfs(std::function<void(Node*& node)> func);
   ```
 
-<br/>
 
 - **copy constructor**
 
@@ -120,7 +116,6 @@ also note the `Node* root` defined in the Trie class, its the only member variab
   Trie(const Trie& trie);
   ```
 
-<br/>
 
 - **move constructor**
 
@@ -129,7 +124,6 @@ also note the `Node* root` defined in the Trie class, its the only member variab
   Trie(Trie&& trie);
   ```
 
-<br/>
 
 - **operator=**
 
@@ -138,7 +132,6 @@ also note the `Node* root` defined in the Trie class, its the only member variab
   void operator=(const Trie& trie);
   ```
 
-<br/>
 
 - **operator= (move version)**
 
