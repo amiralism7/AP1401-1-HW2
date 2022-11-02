@@ -108,6 +108,21 @@ also note the `Node* root` defined in the Trie class, its the only member variab
   void bfs(std::function<void(Node*& node)> func);
   ```
 
+- **destructor**
+
+  Since we have dynamic pointers in our class we need to delete them all in destructor. I will do this task for you, place the code below as your destructor. (do not change this function in any way)
+  ```cpp
+  Trie::~Trie()
+  {
+      if(root == nullptr) return;
+      std::vector<Node*> nodes;
+      this->bfs([&nodes](Trie::Node*& node){nodes.push_back(node);});
+      for(const auto& node : nodes)
+          delete node;
+  }
+  ```
+  to implement this function you may need all the strings stored in Trie. Feel free to create a function for it.
+
 
 - **copy constructor**
 
