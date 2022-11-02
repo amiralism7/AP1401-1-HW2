@@ -1,4 +1,4 @@
-# Advanced Programming Course - HW1
+# Advanced Programming Course - HW2
 <p  align="center"> <b>Homework 2 - Fall 2022 Semester <br> Deadline: Shanbe 21 Aban - 11:59 pm</b> </p>
 
 </br>
