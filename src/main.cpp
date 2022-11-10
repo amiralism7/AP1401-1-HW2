@@ -5,11 +5,19 @@
 
 int main(int argc, char **argv)
 {
-    if (false) // make false to run unit-tests
+    if (true) // make false to run unit-tests
     {
         // debug section
+        Trie temp_trie{};
+        temp_trie.test_root("str1");
+        temp_trie.insert("str1");
+        temp_trie.insert("str22");
+        std::cout << temp_trie.search("str") << std::endl;
 
-    }
+
+
+
+    }   
     else
     {
         ::testing::InitGoogleTest(&argc, argv);
