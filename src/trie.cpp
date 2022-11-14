@@ -5,23 +5,19 @@ Trie::Node::Node(char _data, bool _is_finished):
 data{_data},
 is_finished{_is_finished}
 {
-    std::cout <<"Node Constructor Called" << std::endl;
+    // std::cout <<"Node Constructor Called" << std::endl;
 }
 
 
-Trie::Trie()
+Trie::Trie(): root{new Node {'\0', false}}
 {
-    std::cout << "Trie Constructor Called" << std::endl;
-
-    root = new Node {'\0', false};
-
-    
+    // std::cout << "Trie Constructor Called" << std::endl;
 }
 
 void Trie::insert(std::string str)
 {
-    std::cout << "----------------------------------" << std::endl;
-    std::cout << "insert running" << std::endl;
+    // std::cout << "----------------------------------" << std::endl;
+    // std::cout << "insert running" << std::endl;
     Node* father{root};
 
 
@@ -67,7 +63,7 @@ void Trie::insert(std::string str)
             // adding a new child to father and changing father for next iter
             Node* add_child{new Node {charac, false}};
             (*father).children.push_back(add_child);
-            (*father).is_finished = false;
+            // (*father).is_finished = false;
             father = (*father).children[num_child];
         }
         else{
@@ -107,13 +103,13 @@ void Trie::insert(std::string str)
         
     // }
 
-    std::cout << "End of insert" << std::endl;
+    // std::cout << "End of insert" << std::endl;
 }
 
 
 bool Trie::search(std::string query){
-    std::cout << "----------------------------------" << std::endl;
-    std::cout << "search running" << std::endl;
+    // std::cout << "----------------------------------" << std::endl;
+    // std::cout << "search running" << std::endl;
     Node* father{root};
     // flag to check if the word is found, if a word was missing, it becomes false
     bool main_flag{true};
@@ -122,7 +118,7 @@ bool Trie::search(std::string query){
     char charac {query[0]};
     for (size_t i{0}; i < query.size(); i++){
         charac = query[i];
-        // flag to check if the word is found
+        // flag to check if the word is found.
         bool flag{false};
 
         size_t num_child{(*father).children.size()};
@@ -158,27 +154,112 @@ bool Trie::search(std::string query){
 
 
 
+void Trie::bfs(std::function<void(Node*& node)> func){
+    // std::cout << "------------------------" << std::endl;
+    // std::cout << "bfs running" << std::endl;
+    // initializing
+    std::vector<Node*> fathers;
+    std::vector<Node*> sons;
+    fathers.push_back(root);
+    size_t num_fathers{};
+    size_t num_child{};
+    Node* father{root};
+    size_t layer{};
+    func(root);
+    // looping in depth
+    while (true){
+        if (fathers.size() == 0)
+            break;
+        layer++;
+        num_fathers = fathers.size();
+        // looping in breadth
+        for (size_t i{0}; i<num_fathers; i++){
+            father = fathers[i];
+            num_child = (*father).children.size();
+            // applying the func on all of the nodes in the current layer
+            for (size_t j{0}; j<num_child; j++){
+                sons.push_back((*father).children[j]);
+                func(((*father).children[j]));
+            }
+
+        }
+        // Test
+        // std::cout << std::endl;
+        // std::cout << "sons.size() in layer " << layer << " is:" << std::endl;
+        // std::cout << sons.size() << std::endl;
+        // std::cout << "*********************************************" << std::endl;
+        
+        fathers = sons;
+        sons = {};
+
+    }
 
 
-
-
-
-void Trie::test_root(std::string str){
-    std::cout << "----------------------------------" << std::endl;
-    std::cout << "test_root running" << std::endl;
-    // checking the member vals
-
-    std::cout <<"is data root == /0: " << ((*root).data == '\0') << std::endl;
-
-    (*root).is_finished = false;
-    std::cout <<"is_finished root: " << (*root).is_finished << std::endl;
-
-    // adding some test letters to root as children
-    
-
-    std::cout << "End of test_root" << std::endl;
-    
-    // std::cout << str.size() << std::endl;
 }
+
+Trie::~Trie()
+{   
+    std::cout << "*********************************************" << std::endl;
+    std::cout << "destructor is called:" << std::endl;
+    if(root == nullptr) return;
+    std::vector<Node*> nodes;
+    this->bfs([&nodes](Trie::Node*& node){nodes.push_back(node);});
+    for(const auto& node : nodes)
+        delete node;
+}
+
+
+Trie::Trie(const Trie& trie):
+root{new Node {'\0', false}}
+{
+    std::vector<Node*> fathers;
+    std::vector<Node*> self_fathers;
+    std::vector<Node*> sons;
+    std::vector<Node*> self_sons;
+    fathers.push_back(trie.root);
+    self_fathers.push_back(root);
+    size_t num_fathers{};
+    size_t num_child{};
+    Node* father{trie.root};
+    Node* self_father{root};
+    Node* son{};
+    Node* self_son{};
+    size_t layer{};
+
+    while (true){
+        if (fathers.size() == 0)
+            break;
+        layer++;
+        num_fathers = fathers.size();
+        // looping in breadth
+        for (size_t i{0}; i<num_fathers; i++){
+            father = fathers[i];
+            self_father = self_fathers[i];
+            num_child = (*father).children.size();
+            // applying the func on all of the nodes in the current layer
+            for (size_t j{0}; j<num_child; j++){
+                son = (*father).children[j];
+                sons.push_back(son);
+                // adding the children to fathers
+                self_son = new Node {(*son).data, (*son).is_finished};
+                self_sons.push_back(self_son);
+                (*self_father).children.push_back(self_son);
+            }
+        }
+        // Test
+        // std::cout << std::endl;
+        // std::cout << "sons.size() in layer " << layer << " is:" << std::endl;
+        // std::cout << sons.size() << std::endl;
+        // std::cout << "*********************************************" << std::endl;
+        
+        fathers = sons;
+        self_fathers = self_sons;
+        sons = {};
+        self_sons = {};
+    }
+
+}
+
+
 
 

@@ -5,6 +5,7 @@
 #include<iomanip>
 #include<vector>
 #include<string>
+#include<functional>
 #include"fstream"
 
 class Trie
@@ -37,8 +38,9 @@ class Trie
     
     void insert(std::string str);
     bool search(std::string query);
-    void test_root(std::string str);
-    
+    void bfs(std::function<void(Node*& node)> func);
+    ~Trie();
+    Trie(const Trie& trie); // copy constr
     
   private:
 };
