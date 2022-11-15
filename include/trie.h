@@ -6,6 +6,7 @@
 #include<vector>
 #include<string>
 #include<functional>
+#include <initializer_list>
 #include"fstream"
 
 class Trie
@@ -41,6 +42,10 @@ class Trie
     void bfs(std::function<void(Node*& node)> func);
     ~Trie();
     Trie(const Trie& trie); // copy constr
+    Trie(std::initializer_list<std::string> strings); // custom constr
+    Trie(Trie&& trie); // move constr
+    void operator=(const Trie& trie); // op =
+    void operator=(Trie&& trie); // op = (move)
     
   private:
 };

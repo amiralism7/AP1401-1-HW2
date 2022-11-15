@@ -85,35 +85,35 @@ TEST(HW2Test, TEST7) {
     EXPECT_EQ(trie.root->children[0]->children[0]->children[2]->data, 'i');
 }
 
-// TEST(HW2Test, TEST8) {
-//     Trie trie;
-//     trie.insert("there");
-//     std::vector<Trie::Node*> nodes;
-//     trie.bfs([&nodes](Trie::Node*& node){nodes.push_back(node);});
-//     EXPECT_EQ(nodes.size(), 6);
-// }
+TEST(HW2Test, TEST8) {
+    Trie trie;
+    trie.insert("there");
+    std::vector<Trie::Node*> nodes;
+    trie.bfs([&nodes](Trie::Node*& node){nodes.push_back(node);});
+    EXPECT_EQ(nodes.size(), 6);
+}
 
-// TEST(HW2Test, TEST9) {
-//     Trie trie;
-//     trie.insert("there");
-//     trie.insert("that");
-//     std::vector<Trie::Node*> nodes;
-//     trie.bfs([&nodes](Trie::Node*& node){nodes.push_back(node);});
-//     EXPECT_EQ(nodes.size(), 8);
-// }
+TEST(HW2Test, TEST9) {
+    Trie trie;
+    trie.insert("there");
+    trie.insert("that");
+    std::vector<Trie::Node*> nodes;
+    trie.bfs([&nodes](Trie::Node*& node){nodes.push_back(node);});
+    EXPECT_EQ(nodes.size(), 8);
+}
 
-// TEST(HW2Test, TEST10) {
-//     Trie trie;
-//     trie.insert("there");
-//     trie.insert("does");
-//     trie.insert("that");
-//     trie.insert("this");
-//     trie.insert("did");
+TEST(HW2Test, TEST10) {
+    Trie trie;
+    trie.insert("there");
+    trie.insert("does");
+    trie.insert("that");
+    trie.insert("this");
+    trie.insert("did");
 
-//     std::vector<Trie::Node*> nodes;
-//     trie.bfs([&nodes](Trie::Node*& node){nodes.push_back(node);});
-//     EXPECT_EQ(nodes.size(), 16);
-// }
+    std::vector<Trie::Node*> nodes;
+    trie.bfs([&nodes](Trie::Node*& node){nodes.push_back(node);});
+    EXPECT_EQ(nodes.size(), 16);
+}
 
 TEST(HW2Test, TEST11) {
     Trie trie;
@@ -131,65 +131,65 @@ TEST(HW2Test, TEST11) {
     EXPECT_EQ(trie.search("thisis"), false);
 }
 
-// TEST(HW2Test, TEST12) {
-//     Trie trie{"there", "that", "does"};
-//     EXPECT_EQ(trie.root->children.size(), 2);
-//     EXPECT_EQ(trie.root->children[0]->children[0]->children[1]->data, 'a');
-// }
+TEST(HW2Test, TEST12) {
+    Trie trie{"there", "that", "does"};
+    EXPECT_EQ(trie.root->children.size(), 2);
+    EXPECT_EQ(trie.root->children[0]->children[0]->children[1]->data, 'a');
+}
 
-// TEST(HW2Test, TEST13) {
-//     Trie trie{"there", "that", "this", "does", "did"};
-//     EXPECT_EQ(trie.root->children.size(), 2);
-//     EXPECT_EQ(trie.root->children[0]->children[0]->children.size(), 3);
-//     EXPECT_EQ(trie.root->children[1]->children.size(), 2);
-//     EXPECT_EQ(trie.root->children[1]->children[1]->data, 'i');
-//     EXPECT_EQ(trie.root->children[1]->children[1]->is_finished, false);
-//     EXPECT_EQ(trie.root->children[0]->children[0]->children[2]->data, 'i');
-// }
+TEST(HW2Test, TEST13) {
+    Trie trie{"there", "that", "this", "does", "did"};
+    EXPECT_EQ(trie.root->children.size(), 2);
+    EXPECT_EQ(trie.root->children[0]->children[0]->children.size(), 3);
+    EXPECT_EQ(trie.root->children[1]->children.size(), 2);
+    EXPECT_EQ(trie.root->children[1]->children[1]->data, 'i');
+    EXPECT_EQ(trie.root->children[1]->children[1]->is_finished, false);
+    EXPECT_EQ(trie.root->children[0]->children[0]->children[2]->data, 'i');
+}
 
-// TEST(HW2Test, TEST14) {
-//     Trie copy{"there", "that", "this", "does", "did"};
-//     Trie trie{copy};
+TEST(HW2Test, TEST14) {
+    Trie copy{"there", "that", "this", "does", "did"};
+    Trie trie{copy};
 
-//     std::vector<Trie::Node*> nodes;
-//     trie.bfs([&nodes](Trie::Node*& node){nodes.push_back(node);});
-//     EXPECT_EQ(nodes.size(), 16);
-// }
+    std::vector<Trie::Node*> nodes;
+    trie.bfs([&nodes](Trie::Node*& node){nodes.push_back(node);});
+    EXPECT_EQ(nodes.size(), 16);
+}
 
-// TEST(HW2Test, TEST15) {
+TEST(HW2Test, TEST15) {
 
-//     Trie move{"there", "that", "this", "does", "did"};
-//     Trie::Node* address{move.root};
+    Trie move{"there", "that", "this", "does", "did"};
+    Trie::Node* address{move.root};
 
-//     Trie trie{std::move(move)};
-//     EXPECT_EQ(address, trie.root);
+    Trie trie{std::move(move)};
+    EXPECT_EQ(address, trie.root);
 
-//     std::vector<Trie::Node*> nodes;
-//     trie.bfs([&nodes](Trie::Node*& node){nodes.push_back(node);});
-//     EXPECT_EQ(nodes.size(), 16);
-// }
+    std::vector<Trie::Node*> nodes;
+    trie.bfs([&nodes](Trie::Node*& node){nodes.push_back(node);});
+    EXPECT_EQ(nodes.size(), 16);
+}
 
-// TEST(HW2Test, TEST16) {
+TEST(HW2Test, TEST16) {
 
-//     Trie equal{"there", "that", "this", "does", "did"};
-//     Trie trie{};
-//     trie = equal;
+    Trie equal{"there", "that", "this", "does", "did"};
+    Trie trie{};
+    trie = equal;
 
-//     std::vector<Trie::Node*> nodes;
-//     trie.bfs([&nodes](Trie::Node*& node){nodes.push_back(node);});
-//     EXPECT_EQ(nodes.size(), 16);
-// }
+    std::vector<Trie::Node*> nodes;
+    trie.bfs([&nodes](Trie::Node*& node){nodes.push_back(node);});
+    EXPECT_EQ(nodes.size(), 16);
+}
 
-// TEST(HW2Test, TEST17) {
+TEST(HW2Test, TEST17) {
 
-//     Trie equal{"there", "that", "this", "does", "did"};
-//     Trie::Node* address{equal.root};
+    Trie equal{"there", "that", "this", "does", "did"};
+    Trie::Node* address{equal.root};
 
-//     Trie trie{};
-//     trie = std::move(equal);
-//     EXPECT_EQ(address, trie.root);
+    Trie trie{};
+    trie = std::move(equal);
+    EXPECT_EQ(address, trie.root);
 
-//     std::vector<Trie::Node*> nodes;
-//     trie.bfs([&nodes](Trie::Node*& node){nodes.push_back(node);});
-//     EXPECT_EQ(nodes.size(), 16);
-// }
+    std::vector<Trie::Node*> nodes;
+    trie.bfs([&nodes](Trie::Node*& node){nodes.push_back(node);});
+    EXPECT_EQ(nodes.size(), 16);
+}

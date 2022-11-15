@@ -2,7 +2,8 @@
 #include <iostream>
 #include <gtest/gtest.h>
 #include "trie.h"
-
+#include<string>
+#include <initializer_list>
 
 void test(Trie::Node* node){
     std::cout << "----------------------------------" << std::endl;
@@ -19,12 +20,12 @@ void test(Trie::Node* node){
 
 int main(int argc, char **argv)
 {
-    if (true) // make false to run unit-tests
+    if (false) // make false to run unit-tests
     {
         // debug section
-        Trie temp_trie{};
-        Trie::Node node_tmp{'j', true};
         
+        Trie temp_trie{};
+
         temp_trie.insert("yy");
         temp_trie.insert("abc");
         temp_trie.insert("ABCD");
@@ -32,18 +33,24 @@ int main(int argc, char **argv)
         temp_trie.insert("1234");
 
         std::cout << "We are in main()" << std::endl;
-        std::cout << temp_trie.search("1234") << std::endl;
+        // std::cout << temp_trie.search("1234") << std::endl;
         // temp_trie.bfs(test);
-        std::vector<int> testvect;
 
-        Trie temp_trie_copy{temp_trie};
+        // Trie temp_trie_copy{temp_trie};
+        // temp_trie_copy.bfs(test);
+        // std::cout << temp_trie_copy.search("1234") << std::endl;
         
-        temp_trie_copy.bfs(test);
 
-        std::cout << temp_trie_copy.search("1234") << std::endl;
+        // Trie temp_trie3{"1, 2", "aaaaa"};
+        // std::cout << temp_trie3.search("aaaaa") << std::endl;
 
-        
-        
+        // Trie temp_trie_move{std::move(temp_trie)};
+        // std::cout << temp_trie_move.search("1234") << std::endl;
+
+        // Trie temp_trie_eq{};
+        // temp_trie_eq = temp_trie;
+        // std::cout << temp_trie_eq.search("1234") << std::endl;
+
 
     }   
     else
@@ -58,3 +65,4 @@ int main(int argc, char **argv)
     }
     return 0;
 }
+
